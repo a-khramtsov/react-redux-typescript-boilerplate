@@ -1,0 +1,103 @@
+@import '../../../assets/style/Colors.scss';
+
+
+.formInput {
+	display: flex;
+	flex-direction: column;
+	justify-items: center;
+	position: relative;
+    margin-bottom: 30px;
+
+    &.required {
+        & label:after {
+            content: "*";
+            color: #E45851;
+            font-size: 14px;
+            margin-left: 5px;
+            
+        }
+    }
+   
+
+    & .fieldLabel {
+        font-weight: bold;
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+
+	& .errorText {
+		position: absolute;
+		right: 0;
+		bottom: -18px;
+    }
+    & .fieldIcon {
+        position: absolute;
+        right: 12px;
+        bottom: 13px;
+        & .passwordIcon {
+            font-size: 19px;
+            color: #65697c;
+        }
+    }
+}
+
+
+input.styledInput, textarea.styledInput {
+    border: 1px solid $border_gray;
+    transition: .4s;
+    padding: 8px 30px 8px 10px;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    border-radius: 2px;
+    font-size: 14px;
+    resize: none;
+
+    &:focus {
+        border: 1px solid $main_blue;
+	}
+}
+
+textarea.styledInput {
+    height: 200px;
+}
+
+
+
+input[type=checkbox] {
+    position: relative;
+    width: 17px;
+    height: 17px;
+    -webkit-appearance: none;
+    outline: none;
+    transition: .5s;
+    border-radius: 4px;
+    background: #d2d6de;
+    border: none;
+    transition: .2s;
+    margin: 0;
+    cursor: pointer;
+    &:before {
+        content: '';
+        position: absolute;
+        width: 13px;
+        height: 13px;
+        border-radius: 4px;
+        top: 2.123px;
+        left: 2.123px;
+        background: #d2d6de;
+        transition: .2s;
+    }
+    &:checked[type=checkbox]:before {
+        background: #F8C800;
+    }
+}
+
+.filePicker {
+	& img {
+		max-width: 100%;
+		max-height: 500px;
+		margin: 0 auto;
+		display: block;
+	}
+}

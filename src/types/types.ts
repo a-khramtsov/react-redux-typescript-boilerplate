@@ -6,3 +6,11 @@ export enum AlertifyStatusEnum {
 	warn = 'warn',
 	error = 'error'
 }
+
+
+export type EmptyFuncType = () => void
+
+
+export enum FetchingNamesEnum {
+	
+}
