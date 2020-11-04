@@ -1,117 +1,67 @@
 import React, { useState, useEffect } from 'react'
+import classNames from 'classnames'
+import { useField, FieldAttributes } from "formik";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
 import s from './FormComponents.module.scss'
-import { useField, FieldAttributes, Field } from "formik";
-import classNames from 'classnames';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
-
-import { File } from './Components/File'
-import { Dropdown } from './Components/DropDown'
-import { FormattedTextarea } from './Components/FormattedTextarea'
-
+import { formErrors } from '../../../utils/constants';
 
 type CustomFieldProps = {
 	name: string
-	Component?: React.Component | any,
 	label?: string
-	canSeeInputValue?: boolean
 	type?: string
 	placeholder?: string
-	style?: any
-	required?: boolean
 	disabled?: boolean
-	values?: Array<{
-		value: number | string
-		label: number | string
-		active?: boolean
-	}>
+	style?: any
 	handleChange?: any
-	multiSelect?: boolean
-	setFieldValue?: (field: string, value: any, shouldValidate?: boolean | undefined) => void
+
+	Component?: any
+	componentProps?: any
 }
 
 export const CustomField: React.FC<FieldAttributes<CustomFieldProps>> = (
-	{ label, canSeeInputValue, placeholder = "", Component = Input, required = false,
-		values, handleChange = () => { }, ...props }) => {
+	{ label, Component = Input, ...props }) => {
 
 	const [field, meta] = useField<CustomFieldProps>(props);
-	let errorText = meta.error && meta.touched ? meta.error : "" as any;
+	let errorText = meta.error && meta.touched ? meta.error : "";
 
-	if (errorText) {
-		errorText = errorText[0].toUpperCase() + errorText.slice(1)
+	if (errorText.includes('NaN')) {
+		errorText = formErrors.numeric
 	}
-
-	let type = props.type;
-	const togglePasswordVisibilty = () => {
-		setPasswordVisibilty(!passwordVisibilty)
-	}
-	let showPasswordButton = canSeeInputValue ? <button type="button" onClick={togglePasswordVisibilty}></button> : ''
-	const [passwordVisibilty, setPasswordVisibilty] = useState(false)
-	if (canSeeInputValue) {
-		type = passwordVisibilty ? "text" : "password"
-
-		showPasswordButton =
-			<FontAwesomeIcon
-				icon={passwordVisibilty ? faEyeSlash : faEye}
-				className={s.passwordIcon}
-				onClick={togglePasswordVisibilty}
-			/>
-	}
-
 
 	return (
-		<div className={classNames(s.formInput, {
-			[s.required]: required,
-			[s.withIcon]: showPasswordButton
-		})}
-
-			style={{ ...props.style }}>
-			<label className={s.fieldLabel}> {label}</label>
+		<div className={classNames(s.formInput, { [s.error]: errorText, [s.withLabel]: label },)}>
+			<label className={s.fieldLabel}>{label}</label>
 			<Component
-				type={type}
-				field={field}
-				values={values}
-				handleChange={handleChange}
-				placeholder={placeholder}
+			field={field}
 				{...field}
 				{...props}
+				{...props.componentProps}
 			/>
 
-			<div className={s.fieldIcon}>
-				{showPasswordButton}
-			</div>
-			{type !== 'checkbox' && <p className={classNames(s.errorText, "errorText")}>{errorText}</p>}
+            {props.type !== 'checkbox' && <p className={classNames(s.errorText, "errorText")}>{errorText}</p>}
 		</div>
 	)
 }
 
-export const Input = ({ ...props }) => {
-	const onChange = (e: any) => {
-		props.onChange(e)
-		props.handleChange(e.target.value)
-	}
 
-	return (
-		<>
-			<input className={classNames(s.styledInput)} {...props} onChange={onChange} />
-		</>
-	)
+export const Input = ({ ...props }) => {
+    return (
+        <input className={classNames(s.styledInput)} {...props} disabled={props.disabled} />
+    )
 }
 
 export const Textarea = ({ ...props }) => {
-	return (
-		<textarea className={classNames(s.styledInput)} {...props} />
-	)
+    return (
+        <textarea className={classNames(s.styledInput)} {...props} />
+    )
 }
-
-
-
-
-export const Checkbox = ({ ...props }) => {
-	return (
-		<input {...props} type="checkbox"/>
-	)
+export const Radiobutton = ({ ...props }) => {
+    return (
+        <input
+            className={s.styledInput}
+            type="radio"
+            {...props}
+        />
+    )
 }
-
-
-export { FormattedTextarea, File, Dropdown }

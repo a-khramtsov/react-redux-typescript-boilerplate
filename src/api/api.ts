@@ -44,53 +44,5 @@ export const userAPI = {
 			.then(response => response)
 			.catch(err => handleErr(err));
 	},
-	editProfile(profile: MeType) {
-		let formData = converToFormData(profile)
-		return instance.post(`admin/profile`, formData)
-			.then(response => response)
-			.catch(err => handleErr(err));
-	}
 }
-
-// USERS START
-export const usersAPI = {
-	// getUsers(options: APIListParamsType, cancelToken?: CancelToken) {
-	// 	return instance.get(`admin/users`, { cancelToken, params: { ...options } })
-	// 		.then(response => response)
-	// 		.catch(err => handleErr(err));
-	// },
-	// getUser(id: number, cancelToken?: CancelToken) {
-	// 	return instance.get(`admin/users/${id}`, { cancelToken })
-	// 		.then(response => response)
-	// 		.catch(err => handleErr(err));
-	// },
-	// addUser(userObj: UserType) {
-	// 	let formData = converToFormData(userObj)
-
-	// 	return instance.post(`admin/users`, formData)
-	// 		.then(response => response)
-	// 		.catch(err => handleErr(err));
-	// },
-
-	// editUser(userObj: UserType) {
-	// 	let formData = converToFormData(userObj)
-	// 	formData.append('_method','PUT')
-
-	// 	return instance.post(`admin/users/${userObj.id}`, formData)
-	// 		.then(response => response)
-	// 		.catch(err => handleErr(err));
-	// },
-
-	// deleteUser(id: number) {
-	// 	return instance.delete(`admin/users/${id}`)
-	// 	.then(response => response)
-	// 	.catch(err => handleErr(err));
-	// },
-	// banUser(id: number) {
-	// 	return instance.post(`admin/users/${id}/ban`)
-	// 	.then(response => response)
-	// 	.catch(err => handleErr(err));
-	// }
-}
-
 
