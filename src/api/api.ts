@@ -4,7 +4,7 @@ import { showAlert } from '../utils/showAlert';
 import { AlertifyStatusEnum } from '../types/types';
 import { MeType } from '../types/me';
 
-export let apiURL = "https://api.2bara.net/"
+export let apiURL = ""
 
 
 const instance = Axios.create({
