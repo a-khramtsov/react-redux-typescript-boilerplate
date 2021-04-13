@@ -1,67 +1,70 @@
 {
-  "name": "any-project",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@fortawesome/free-solid-svg-icons": "^5.15.1",
-    "@fortawesome/react-fontawesome": "^0.1.11",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
-    "@tinymce/tinymce-react": "^3.8.0",
-    "@types/axios": "^0.14.0",
-    "@types/classnames": "^2.2.10",
-    "@types/jest": "^24.9.1",
-    "@types/js-cookie": "^2.2.6",
-    "@types/moment": "^2.13.0",
-    "@types/node": "^12.12.67",
-    "@types/react": "^16.9.52",
-    "@types/react-dom": "^16.9.8",
-    "@types/react-lazy-load-image-component": "^1.5.1",
-    "@types/react-redux": "^7.1.9",
-    "@types/react-router-dom": "^5.1.6",
-    "@types/react-select": "^3.0.22",
-    "@types/redux-devtools-extension": "^2.13.2",
-    "@types/redux-thunk": "^2.1.0",
-    "@types/yup": "^0.29.8",
-    "alertifyjs": "^1.13.1",
-    "axios": "^0.20.0",
-    "classnames": "^2.2.6",
-    "formik": "^2.2.0",
-    "js-cookie": "^2.2.1",
-    "moment": "^2.29.1",
-    "node-sass": "^4.14.1",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
-    "react-lazy-load-image-component": "^1.5.0",
-    "react-redux": "^7.2.1",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3",
-    "react-select": "^3.1.0",
-    "redux-devtools-extension": "^2.13.8",
-    "redux-thunk": "^2.3.0",
-    "typescript": "^3.7.5",
-    "yup": "^0.29.3"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+	"name": "react-template",
+	"version": "0.1.0",
+	"private": false,
+	"dependencies": {
+		"@reduxjs/toolkit": "^1.5.0",
+		"@testing-library/jest-dom": "^5.11.9",
+		"@testing-library/react": "^11.2.5",
+		"@testing-library/user-event": "^12.8.1",
+		"@types/axios": "^0.14.0",
+		"@types/jest": "^26.0.20",
+		"@types/js-cookie": "^2.2.6",
+		"@types/node": "^12.20.4",
+		"@types/react": "^17.0.2",
+		"@types/react-dom": "^17.0.1",
+		"@types/react-jss": "^10.0.0",
+		"@types/react-redux": "^7.1.16",
+		"@types/react-router": "^5.1.12",
+		"@types/react-router-dom": "^5.1.7",
+		"@types/redux": "^3.6.0",
+		"@types/redux-logger": "^3.0.8",
+		"@types/yup": "^0.29.11",
+		"alertifyjs": "^1.13.1",
+		"axios": "^0.21.1",
+		"eslint": "^7.24.0",
+		"formik": "^2.2.6",
+		"js-cookie": "^2.2.1",
+		"node-sass": "^4.14.0",
+		"react": "^17.0.1",
+		"react-dom": "^17.0.1",
+		"react-jss": "^10.6.0",
+		"react-redux": "^7.2.2",
+		"react-router": "^5.2.0",
+		"react-router-dom": "^5.2.0",
+		"react-scripts": "4.0.3",
+		"redux": "^4.0.5",
+		"redux-logger": "^3.0.6",
+		"typescript": "^4.2.2",
+		"web-vitals": "^1.1.0",
+		"yup": "^0.32.9"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject",
+		"prepare": "husky install"
+	},
+	"eslintConfig": {
+		"extends": [
+			"react-app",
+			"react-app/jest"
+		]
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"devDependencies": {
+		"husky": "^5.1.3"
+	}
 }
