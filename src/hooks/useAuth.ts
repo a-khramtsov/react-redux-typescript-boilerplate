@@ -3,11 +3,11 @@ import { authUser } from '../redux/me/meSlice'
 import { useDispatch } from 'react-redux'
 
 const useAuth = () => {
-    const dispatch = useDispatch()
+	const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(authUser())
-    }, [dispatch])
+	useEffect(() => {
+		dispatch(authUser())
+	}, [dispatch])
 }
 
 export default useAuth

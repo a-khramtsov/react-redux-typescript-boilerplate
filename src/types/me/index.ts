@@ -1,7 +1,5 @@
 export type MeType = {
-    id: number
+	id: number
 }
 
-export enum RoleEnum {
-
-}
+export enum RoleEnum {}

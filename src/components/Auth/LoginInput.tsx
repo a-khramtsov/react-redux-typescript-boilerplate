@@ -1,6 +1,14 @@
 import React from 'react'
-import s from './Login.module.scss'
+import { createUseStyles } from 'react-jss'
 
-export const LoginInput  = (props: any) => {
-	return <input {...props} className={s.loginInput}/>
+type PropsType = {}
+
+export const LoginInput = (props: PropsType & React.InputHTMLAttributes<HTMLInputElement>) => {
+	const styles = useStyles()
+
+	return <input {...props} className={styles.root} />
 }
+
+const useStyles = createUseStyles({
+	root: {},
+})

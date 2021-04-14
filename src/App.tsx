@@ -1,7 +1,10 @@
 import { useSelector } from 'react-redux'
-import Login from './components/Auth';
-import { RootState } from './types/redux/redux';
-import useAuth from './hooks/useAuth';
+import { RootState } from 'types/redux/redux'
+import Login from 'components/Auth'
+import useAuth from 'hooks/useAuth'
+import MainRouter from 'router'
+
+import { ToastContainer } from 'react-toastify'
 
 const App = () => {
 	const logged = useSelector((state: RootState) => state.me.logged)
@@ -12,11 +15,22 @@ const App = () => {
 		return <Login />
 	}
 
-
 	return (
 		<div>
+			<ToastContainer
+				position='top-right'
+				autoClose={5000}
+				hideProgressBar
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+			/>
+			<MainRouter />
 		</div>
 	)
 }
 
-export default App;
+export default App
