@@ -58,7 +58,6 @@
 		"eject": "react-scripts eject",
 		"prepare": "yarn lint && husky install",
 		"precommit": "lint-staged"
-
 	},
 	"eslintConfig": {
 		"extends": [
@@ -85,10 +84,15 @@
 		"eslint-plugin-react": "^7.23.2",
 		"husky": "^6.0.0"
 	},
-	 "lint-staged": {
+	"lint-staged": {
 		"*.{js, jsx, ts, tsx}": [
 			"prettier --write",
 			"git add"
 		]
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
 	}
 }
