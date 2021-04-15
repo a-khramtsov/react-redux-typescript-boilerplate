@@ -3,7 +3,7 @@ import { Formik, Form } from 'formik'
 import * as yup from 'yup'
 import { login } from 'redux/me/meSlice'
 import { LoginInput } from './LoginInput'
-import { OnChangeEvent } from 'types/common'
+import { ChangeType } from 'types/common'
 import { createUseStyles } from 'react-jss'
 import { LoginPayloadType } from 'redux/me/types'
 import { useAppDispatch } from 'redux/store'
@@ -48,13 +48,11 @@ const Login: FC = () => {
 						<h2 className={styles.title}>Вход</h2>
 						<LoginInput
 							value={values.login}
-							onChange={(e: OnChangeEvent) => setFieldValue('login', e.target.value)}
+							onChange={(e: ChangeType) => setFieldValue('login', e.target.value)}
 						/>
 						<LoginInput
 							value={values.password}
-							onChange={(e: OnChangeEvent) =>
-								setFieldValue('password', e.target.value)
-							}
+							onChange={(e: ChangeType) => setFieldValue('password', e.target.value)}
 						/>
 
 						<button className={styles.button} disabled={isSubmitting}>

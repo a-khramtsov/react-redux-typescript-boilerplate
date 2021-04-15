@@ -1,3 +1,5 @@
-export type VoidFuncType = () => void
+import { ChangeEvent, Component } from 'react'
 
-export type OnChangeEvent = React.ChangeEvent<HTMLInputElement>
+export type VoidFuncType = () => void
+export type ComponentType<T = any> = typeof Component | React.FC<T>
+export type ChangeType<T = HTMLInputElement> = ChangeEvent<T>
