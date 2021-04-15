@@ -30,6 +30,8 @@
             "single"
         ],
         "react/react-in-jsx-scope": "off",
+        "react/jsx-uses-react": "off",
+	    "react/display-name": "off",
         "react/jsx-filename-extension": [
             1,
             {
@@ -44,6 +46,7 @@
         "require-jsdoc": "off",
         "@typescript-eslint/ban-ts-comment": "off",
         "@typescript-eslint/ban-types": "off",
-        "@typescript-eslint/explicit-module-boundary-types": "off"
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-explicit-any": "off"
     }
 }
