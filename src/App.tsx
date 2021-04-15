@@ -5,91 +5,51 @@ import useAuth from 'hooks/useAuth'
 import MainRouter from 'router'
 
 import { ToastContainer } from 'react-toastify'
-import Table from 'components/Common/Table'
-import { OrderEnum } from 'components/Common/Table/types'
-import React, { useState } from 'react'
-import Checkbox from 'components/Common/Controls/Checkbox'
-import { ChangeType } from 'types/common'
-import Switch from 'components/Common/Controls/Checkbox/Switch'
-import RadioButton from 'components/Common/Controls/Radiobutton'
+import { useState } from 'react'
+import Dropdown from 'components/Common/Controls/Dropdown'
 
 const App = () => {
 	const logged = useSelector((state: RootState) => state.me.logged)
 
 	useAuth()
 
-	const [order, setOrder] = useState(OrderEnum.asc)
-	const [orderBy, setOrderBy] = useState('id')
+	const [dropdownValue, setDropdownValue] = useState<string | number>('value1')
 
-	const [checked, setChecked] = useState(false)
-	const [radioValue, setRadio] = useState('a')
-	console.log(checked)
+	const [values, setValues] = useState([
+		{ label: 'Значение 1', value: 'value1' },
+		{ label: 'Значение 2', value: 'value2' },
+		{ label: 'Значение 3', value: 'value3' },
+		{ label: 'Значение 4', value: 'value4' },
+		{ label: 'Значение 5', value: 'value5' },
+		{ label: 'Значение 6', value: 'value6' },
+		{ label: 'Значение 7', value: 'value7' },
+		{ label: 'Значение 8', value: 'value8' },
+		{ label: 'Значение 9', value: 'value9' },
+		{ label: 'Значение 10', value: 'value10' },
+	])
+
+	const addValues = () => {
+		const start = values.length + 1
+		const newValues = []
+
+		for (let i = start; i < start + 10; i++) {
+			newValues.push({ label: `Значение ${i}`, value: `value${i}` })
+		}
+		setValues([...values, ...newValues])
+	}
+
 	if (!logged) {
 		return <Login />
 	}
 
 	return (
 		<div>
-			<Table
-				labels={[
-					{ label: 'Поле 1', value: 'value1' },
-					{ label: 'Поле 2', value: 'value2' },
-					{ label: 'Поле 3', value: 'value3' },
-					{ label: 'Поле 4', value: 'value4' },
-				]}
-				values={[
-					{ id: 1, value1: '1', value2: '2', value3: '3', value4: '4' },
-					{ id: 2, value1: '1', value2: '2', value3: '3', value4: '4' },
-					{ id: 3, value1: '1', value2: '2', value3: '3', value4: '4' },
-					{ id: 4, value1: '1', value2: '2', value3: '3', value4: '4' },
-					{ id: 8, value1: '1', value2: '2', value3: '3', value4: '4' },
-					{ id: 5, value1: '1', value2: '2', value3: '3', value4: '4' },
-					{ id: 6, value1: '1', value2: '2', value3: '3', value4: '4' },
-					{ id: 7, value1: '1', value2: '2', value3: '3', value4: '4' },
-				]}
-				orderObj={{
-					order,
-					setOrder,
-					orderBy,
-					setOrderBy,
-				}}
-			/>
-
-			<label>
-				<Checkbox
-					value={checked}
-					onChange={(event: ChangeType) => setChecked(event.target.checked)}
-				/>
-				<span style={{ marginLeft: 8 }}>Label Text</span>
-			</label>
-
-			<Switch
-				value={checked}
-				onChange={(event: ChangeType) => setChecked(event.target.checked)}
-			/>
-
-			<RadioButton
-				label='radio 1'
-				name='radio'
-				value={'a'}
-				checked={radioValue === 'a'}
-				onChange={(event: ChangeType) => setRadio(event.target.value)}
-			/>
-			<RadioButton
-				label='radio 2'
-				name='radio'
-				value={'b'}
-				checked={radioValue === 'b'}
-				onChange={(event: ChangeType) => setRadio(event.target.value)}
-			/>
-
-			<RadioButton
-				label='radio 3 (disabled)'
-				name='radio-disabled'
-				value={'b'}
-				checked={radioValue === 'b'}
-				disabled
-				onChange={(event: ChangeType) => setRadio(event.target.value)}
+			<Dropdown
+				values={values}
+				selectedID={dropdownValue}
+				onChange={setDropdownValue}
+				pagination={{ hasMore: values.length < 50, getMore: () => addValues() }}
+				placeholder='Введите название'
 			/>
 
 			<ToastContainer

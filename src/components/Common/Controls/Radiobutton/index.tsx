@@ -24,18 +24,19 @@ const Label = styled.label<{ disabled?: boolean }>`
 	position: relative;
 	display: inline-block;
 	cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
-	margin: 0.6em 1em;
+	margin: 10px 20px 10px 40px;
 	font-size: 24px;
 `
 
 const Indicator = styled.div`
-	border: 1px solid;
-	border-radius: 1em;
-	width: 1.2em;
-	height: 1.2em;
+	border: 1px solid #263238;
+	border-radius: 100%;
+	width: 30px;
+	height: 30px;
 	position: absolute;
-	top: 0;
-	left: -1.5em;
+	top: -4px;
+	left: -40px;
+	transition: 0.2s;
 
 	${Label}:hover & {
 		background: #ccc;
@@ -49,14 +50,12 @@ const Indicator = styled.div`
 
 	${Input}:checked + &::after {
 		display: block;
-		border: solid #263238;
 		border-radius: 1em;
 		background-color: #263238;
-		width: 0.5em;
-		height: 0.5em;
+		width: 16px;
+		height: 16px;
 		top: 50%;
 		left: 50%;
-		transform: translate(-50%, -50%);
 		animation-name: ${popIn};
 		animation-duration: 0.3s;
 		animation-fill-mode: forwards;
@@ -111,7 +110,7 @@ type PropsType = {
 	value: string | number
 	onChange: (val: string | number) => void
 
-	radiobuttons: Array<{
+	values: Array<{
 		id?: string
 		value?: string | number
 		disabled?: boolean
@@ -119,16 +118,17 @@ type PropsType = {
 	}>
 }
 
-export const Radiobuttons = ({ radiobuttons, onChange, value, name }: PropsType) => {
+export const Radiobuttons = ({ values, onChange, value, name }: PropsType) => {
 	return (
 		<div>
-			{radiobuttons.map(radiobutton => (
+			{values.map(radiobutton => (
 				<RadioButton
 					key={radiobutton.value}
 					name={name}
 					id={radiobutton.id}
 					disabled={radiobutton.disabled}
 					label={radiobutton.label}
+					value={radiobutton.value}
 					checked={value === radiobutton.value}
 					onChange={(event: ChangeType) => onChange(event.target.value)}
 				/>
