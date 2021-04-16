@@ -22,14 +22,14 @@ const isDirection = (code: string, directions: KeyCodeEnum[]) => {
 }
 
 export const isDown = (event: KeyboardEvent) => {
-	return isDirection(event.code, [KeyCodeEnum.down, KeyCodeEnum.s])
+	return isDirection(event.code, [KeyCodeEnum.down])
 }
 export const isUp = (event: KeyboardEvent) => {
-	return isDirection(event.code, [KeyCodeEnum.up, KeyCodeEnum.w])
+	return isDirection(event.code, [KeyCodeEnum.up])
 }
 export const isLeft = (event: KeyboardEvent) => {
-	return isDirection(event.code, [KeyCodeEnum.a, KeyCodeEnum.left])
+	return isDirection(event.code, [KeyCodeEnum.left])
 }
 export const isRight = (event: KeyboardEvent) => {
-	return isDirection(event.code, [KeyCodeEnum.right, KeyCodeEnum.d])
+	return isDirection(event.code, [KeyCodeEnum.right])
 }

@@ -108,7 +108,7 @@ const RadioButton = ({
 type PropsType = {
 	name: string
 	value: string | number
-	onChange: (val: string | number) => void
+	onChange: (event: ChangeType) => void
 
 	values: Array<{
 		id?: string
@@ -130,7 +130,7 @@ export const Radiobuttons = ({ values, onChange, value, name }: PropsType) => {
 					label={radiobutton.label}
 					value={radiobutton.value}
 					checked={value === radiobutton.value}
-					onChange={(event: ChangeType) => onChange(event.target.value)}
+					onChange={onChange}
 				/>
 			))}
 		</div>

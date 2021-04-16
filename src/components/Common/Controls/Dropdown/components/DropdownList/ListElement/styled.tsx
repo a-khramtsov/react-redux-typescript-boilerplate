@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 
-export const DropdownItem = styled.button<{
+// eslint-disable-next-line prettier/prettier
+export const DropdownItem = styled.button.attrs({ className: 'dropdown-item' }) <{
 	active: boolean
 	disabled?: boolean
 	hovered?: boolean
@@ -23,6 +24,9 @@ export const DropdownItem = styled.button<{
 		css`
 			background: rgb(231, 231, 231);
 		`}
+	&:hover {
+		background: rgb(231, 231, 231);
+	}
 
 	${p =>
 		p.disabled &&

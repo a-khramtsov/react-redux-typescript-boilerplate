@@ -13,13 +13,16 @@ const useSearch = (
 		const value = e.target.value
 
 		if (search) {
-			search?.setSearch(value)
-
-			if (!values.length && value) {
-				onChange(value)
+			if (search.isLocalSearch) {
+				setLocalSearch(value)
+			} else {
+				if (search.setSearch) {
+					search.setSearch(value)
+					if (!values.length && value) {
+						onChange(value)
+					}
+				}
 			}
-		} else {
-			setLocalSearch(value)
 		}
 	}
 

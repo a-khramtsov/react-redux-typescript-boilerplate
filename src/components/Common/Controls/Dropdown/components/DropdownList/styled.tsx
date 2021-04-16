@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const DropdownList = styled.div`
+export const DropdownList = styled.div.attrs({ className: 'dropdown-list' })`
 	z-index: 1;
 	max-height: 250px;
 	overflow-y: auto;
@@ -30,7 +30,7 @@ export const DropdownList = styled.div`
 	}
 `
 
-export const NoValuesMessage = styled.div`
+export const NoValuesMessage = styled.div.attrs({ className: 'no-values' })`
 	margin: 25px auto;
 	display: flex;
 	align-items: center;

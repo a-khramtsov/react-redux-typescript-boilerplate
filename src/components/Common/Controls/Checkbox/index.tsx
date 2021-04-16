@@ -11,7 +11,6 @@ const Icon = styled.svg`
 	stroke: white;
 	stroke-width: 2px;
 `
-// eslint-disable-next-line prettier/prettier
 const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
 	border: 0;
 	clip: rect(0 0 0 0);
@@ -25,7 +24,8 @@ const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
 	width: 1px;
 `
 
-const StyledCheckbox = styled.div<{ checked?: boolean }>`
+// eslint-disable-next-line prettier/prettier
+const StyledCheckbox = styled.div.attrs({ className: 'checkbox-body' }) <{ checked?: boolean }>`
 	cursor: pointer;
 	display: inline-block;
 	width: 20px;

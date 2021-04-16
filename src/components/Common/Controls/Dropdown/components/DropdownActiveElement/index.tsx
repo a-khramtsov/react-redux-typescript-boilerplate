@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { ChangeType } from 'types/common'
-import { SelectorType } from '../../types'
+import { SearchType, SelectorType } from '../../types'
 import { CloseIcon } from 'assets/svg'
 import { ActiveElementWrapper, DeleteButton, SelectedValue, StyledInput } from './styled'
 
@@ -20,7 +20,9 @@ type PropsType = {
 	values: Array<SelectorType>
 	selectedID: number | string
 	placeholder?: string
+	search?: SearchType
 	searchText: string
+	setLocalSearch: (search: string) => void
 	handleSearch: (e: ChangeType) => void
 	open: boolean
 	setOpen: (open: boolean) => void
@@ -32,8 +34,10 @@ const ActiveElement = (props: PropsType) => {
 		values = [],
 		selectedID,
 		placeholder,
+		search,
 		searchText,
 		handleSearch,
+		setLocalSearch,
 		open,
 		setOpen,
 		onChange,
@@ -43,6 +47,10 @@ const ActiveElement = (props: PropsType) => {
 
 	const handleValueDelete = (event: React.MouseEvent) => {
 		onChange('')
+		setLocalSearch('')
+		if (search && search.setSearch) {
+			search?.setSearch('')
+		}
 		event.stopPropagation()
 	}
 
@@ -57,24 +65,40 @@ const ActiveElement = (props: PropsType) => {
 		return () => document.removeEventListener('keydown', checkKeyDown)
 	}, [open, activeSelectorValue, onChange])
 
-	return (
-		<ActiveElementWrapper withSearch={!activeSelectorValue} onClick={() => setOpen(true)}>
-			{activeSelectorValue ? (
+	const getComponent = () => {
+		let component = null
+
+		if (activeSelectorValue) {
+			component = (
 				<>
 					<SelectedValue>{activeSelectorValue}</SelectedValue>
 					<DeleteButton onClick={handleValueDelete}>
 						<CloseIcon />
 					</DeleteButton>
 				</>
-			) : (
+			)
+		} else if (search) {
+			component = (
 				<StyledInput
 					value={searchText}
 					onChange={handleSearch}
 					onFocus={() => setOpen(true)}
-					placeholder={placeholder}
+					placeholder={search.placeholder}
 					autoComplete='off'
 				/>
-			)}
+			)
+		} else {
+			component = <SelectedValue withPlaceholder={true}>{placeholder}</SelectedValue>
+		}
+		return component
+	}
+
+	return (
+		<ActiveElementWrapper
+			withSearch={!activeSelectorValue && !!search}
+			onClick={() => setOpen(true)}
+		>
+			{getComponent()}
 		</ActiveElementWrapper>
 	)
 }

@@ -15,7 +15,11 @@ const Pagination = ({ pagination }: PropsType) => {
 		event.stopPropagation()
 	}
 
-	return <GetMoreButton onClick={handleClick}>Показать еще</GetMoreButton>
+	return (
+		<GetMoreButton onClick={handleClick} type='button'>
+			Показать еще
+		</GetMoreButton>
+	)
 }
 
 const GetMoreButton = styled.button`

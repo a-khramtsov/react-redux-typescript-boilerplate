@@ -9,15 +9,24 @@ import DropdownActiveElement from './components/DropdownActiveElement'
 
 type PropsType = {
 	values: Array<SelectorType>
-	selectedID: number | string
+	value: number | string
 	onChange: (value: string | number) => void
 	placeholder?: string
 	pagination?: PaginationType
 	search?: SearchType
+	className?: string
 }
 
 const Dropdown = (props: PropsType) => {
-	const { values = [], selectedID, placeholder, onChange, pagination, search } = props
+	const {
+		values = [],
+		value: selectedID,
+		placeholder,
+		onChange,
+		pagination,
+		search,
+		className,
+	} = props
 
 	const { localSearch, setLocalSearch, handleSearch } = useSearch(values, onChange, search)
 
@@ -37,11 +46,13 @@ const Dropdown = (props: PropsType) => {
 	const filteredValues = getValuesBySearchText(values, localSearch)
 
 	return (
-		<DropdownWrapper ref={dropdownRef}>
+		<DropdownWrapper ref={dropdownRef} className={className}>
 			<DropdownActiveElement
 				values={values}
 				selectedID={selectedID}
 				placeholder={placeholder}
+				search={search}
+				setLocalSearch={setLocalSearch}
 				searchText={search?.search || localSearch}
 				handleSearch={handleSearch}
 				open={open}
@@ -61,7 +72,7 @@ const Dropdown = (props: PropsType) => {
 	)
 }
 
-const DropdownWrapper = styled.div`
+const DropdownWrapper = styled.div.attrs({})`
 	position: relative;
 	width: 100%;
 	max-width: 300px;
